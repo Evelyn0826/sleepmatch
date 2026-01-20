@@ -18,7 +18,9 @@ def inject_ga():
         height=0,
     )
 
-inject_ga()
+if "ga_injected" not in st.session_state:
+    inject_ga()
+    st.session_state["ga_injected"] = True
 
 
 def base_sleep_by_age(age):
