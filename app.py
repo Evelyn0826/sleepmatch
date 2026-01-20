@@ -1,5 +1,28 @@
 import streamlit as st
 
+import streamlit as st
+import streamlit.components.v1 as components
+
+GA_MEASUREMENT_ID = "G-VMNM6JJ2M4"
+
+def inject_ga():
+    components.html(
+        f"""
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={GA_MEASUREMENT_ID}"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){{dataLayer.push(arguments);}}
+          gtag('js', new Date());
+          gtag('config', '{GA_MEASUREMENT_ID}', {{ 'anonymize_ip': true }});
+        </script>
+        """,
+        height=0,
+    )
+
+inject_ga()
+
+
 def base_sleep_by_age(age):
     """Return base sleep hours based on age."""
     if age <= 25:
